@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+  
+{% block title %}Informaticiens Records{% endblock title %}
+  
+{% block content %}
+ <div class="col-md-12">
+        <span><a href="{% url 'informaticien_new' %}" class="btn btn-primary mb-4">Add New Record</a></span>  
+        <div class="table-responsive">
+        <table id="bootstrapdatatable" class="table table-striped table-bordered mb-4" width="100%">
+        <thead>
+            <th><input type="checkbox" id="checkall" /></th>
+            <th>ID</th>
+            <th>Informaticien Name</th>
+            <th>Informaticien Email</th>
+            <th>Informaticien Contact</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+        {% for informaticien in informaticiens %}  
+            <tr>  
+            <td><input type="checkbox" class="checkthis" /></td>
+            <td>{{ informaticien.id }}</td>  
+            <td>{{ informaticien.name }}</td>  
+            <td>{{ informaticien.email }}</td>  
+            <td>{{ informaticien.contact }}</td>  
+            <td><a href="{% url 'informaticien_edit' pk=informaticien.pk %}" class="btn btn-primary">Edit</a></td>
+            <td><a href="{% url 'informaticien_remove' pk=informaticien.pk %}" class="btn btn-danger">Delete</a></td>  
+            </tr>  
+        {% endfor %} 
+        </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock content %}
